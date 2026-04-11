@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineer</title>
+    <meta name="description" content="Software Engineer with 5+ years experience in telecommunications, aerospace, and industrial automation. Based in Gothenburg, Sweden.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #fafafa;
+            --muted: #888;
+            --accent: #fff;
+            --border: #222;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', system-ui, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-style: italic;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--fg);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+        }
+
+        .hero-intro {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 64px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .section-number {
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        /* Experience */
+        .experience-grid {
+            display: grid;
+            gap: 48px;
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .experience-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .experience-company {
+            font-size: 0.875rem;
+            color: var(--fg);
+        }
+
+        .experience-date {
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .experience-via {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .experience-role {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .experience-desc {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .experience-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: var(--border);
+            border-radius: 4px;
+            color: var(--muted);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .skill-category h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skill-list span {
+            font-size: 1rem;
+            color: var(--fg);
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .education-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+        }
+
+        .education-year {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .education-degree {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .education-school {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            margin-bottom: 8px;
+        }
+
+        .education-thesis {
+            font-size: 0.875rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .education-thesis a {
+            color: var(--fg);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .education-thesis a:hover {
+            color: var(--muted);
+        }
+
+        /* Clients */
+        .clients-intro {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 48px;
+            max-width: 480px;
+        }
+
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px 64px;
+            align-items: center;
+        }
+
+        .client-logo {
+            height: 24px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            font-family: var(--sans);
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--fg);
+            letter-spacing: 0.02em;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        .client-logo.serif {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.5rem;
+        }
+
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-text {
+            font-family: var(--serif);
+            font-size: 2rem;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .contact-link:hover {
+            color: var(--fg);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 48px;
+            }
+
+            .experience-item,
+            .education-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .contact-text {
+                font-size: 1.5rem;
+            }
+
+            .clients-grid {
+                gap: 32px 40px;
+            }
+        }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .hero h1, .hero-intro, .hero-label {
+                animation: fadeUp 0.8s ease-out backwards;
+            }
+
+            .hero-label { animation-delay: 0.1s; }
+            .hero h1 { animation-delay: 0.2s; }
+            .hero-intro { animation-delay: 0.4s; }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-title">Software Engineer</a>
+            <ul class="nav-links">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <p class="hero-label">Gothenburg, Sweden</p>
+            <h1>Building <em>robust</em><br>software systems</h1>
+            <p class="hero-intro">Software engineer with 5+ years of experience across telecommunications, aerospace, and industrial automation. I specialize in backend systems, embedded software, and test automation — from 5G core networks to drilling rigs to airline crew management.</p>
+        </div>
+        <span class="scroll-hint">Scroll</span>
+    </header>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <span class="section-number">01</span>
+            </div>
+            <div class="experience-grid">
+                <article class="experience-item">
+                    <div class="experience-meta">
+                        <span class="experience-company">Boeing</span>
+                        <span class="experience-date">Jun 2024 – Sep 2025</span>
+                        <span class="experience-via">via HiQ</span>
+                    </div>
+                    <div>
+                        <h3 class="experience-role">Crew Operations Systems</h3>
+                        <p class="experience-desc">Configured and delivered Crew and Operations management products for global airline clients. Implemented FAR/CBA regulatory rules in a real-time roster system with third-party dependencies. Worked directly with clients to gather requirements and tailor solutions for crew planning workflows.</p>
+                        <div class="experience-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Rave</span>
+                            <span class="tech-tag">Gherkin</span>
+                            <span class="tech-tag">Data Integration</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="experience-item">
+                    <div class="experience-meta">
+                        <span class="experience-company">Epiroc</span>
+                        <span class="experience-date">Jan 2023 – Apr 2024</span>
+                        <span class="experience-via">via HiQ</span>
+                    </div>
+                    <div>
+                        <h3 class="experience-role">Embedded Systems</h3>
+                        <p class="experience-desc">Designed and implemented embedded C++ solutions for high-speed calculations during drilling operations. Built multi-packet engine bus messaging support, pytest-based test suites, and Azure DevOps pipelines. Developed Python tooling for PCAP/JSON log analysis and contributed to React/TypeScript frontend work.</p>
+                        <div class="experience-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Azure DevOps</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="experience-item">
+                    <div class="experience-meta">
+                        <span class="experience-company">Ericsson</span>
+                        <span class="experience-date">Mar 2021 – Dec 2022</span>
+                        <span class="experience-via">via HiQ</span>
+                    </div>
+                    <div>
+                        <h3 class="experience-role">5G Core Network</h3>
+                        <p class="experience-desc">Designed and implemented features for the AMF control-plane microservice in Ericsson's 5G core network — infrastructure serving hundreds of millions of users. Conducted system testing in Kubernetes environments, resolved defects through root-cause analysis, and triaged CI failures to keep releases stable.</p>
+                        <div class="experience-tech">
+                            <span class="tech-tag">Erlang</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">TTCN-3</span>
+                            <span class="tech-tag">Functional Programming</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills</h2>
+                <span class="section-number">02</span>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span>Python</span>
+                        <span>C++</span>
+                        <span>Erlang</span>
+                        <span>TypeScript</span>
+                        <span>React</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Infrastructure</h3>
+                    <div class="skill-list">
+                        <span>Linux</span>
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>CI/CD Pipelines</span>
+                        <span>Git / Gerrit</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Testing</h3>
+                    <div class="skill-list">
+                        <span>Pytest</span>
+                        <span>Behave / Gherkin</span>
+                        <span>TTCN-3</span>
+                        <span>Test Automation</span>
+                        <span>E2E Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+                <span class="section-number">03</span>
+            </div>
+            <div class="education-grid">
+                <div class="education-item">
+                    <span class="education-year">2016 – 2020</span>
+                    <div>
+                        <h3 class="education-degree">BSc Computer Science</h3>
+                        <p class="education-school">University of Gothenburg</p>
+                        <p class="education-thesis">Thesis: Built adaptive AI for autonomous StarCraft 2 gameplay with strategic decision-making. <a href="#">View thesis →</a></p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <span class="education-year">2014 – 2015</span>
+                    <div>
+                        <h3 class="education-degree">Engineering Mathematics</h3>
+                        <p class="education-school">Chalmers University of Technology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Clients</h2>
+                <span class="section-number">04</span>
+            </div>
+            <p class="clients-intro">Delivered software solutions through consultancy work across telecommunications, aerospace, and industrial automation.</p>
+            <div class="clients-grid">
+                <span class="client-logo">Boeing</span>
+                <span class="client-logo">Ericsson</span>
+                <span class="client-logo">Epiroc</span>
+                <span class="client-logo serif">HiQ</span>
+                <span class="client-logo">new minds</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <span class="section-number">05</span>
+            </div>
+            <div class="contact-content">
+                <p class="contact-text">Interested in working together? Let's connect.</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@gmail.com" class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/flowu" target="_blank" rel="noopener" class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-text">© 2026</span>
+            <span class="footer-text">Gothenburg, Sweden</span>
+        </div>
+    </footer>
+</body>
+</html>

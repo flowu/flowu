@@ -1,3 +1,0 @@
-Flask
-gunicorn # For serving your app in production
-requests # If you need to make HTTP requests
