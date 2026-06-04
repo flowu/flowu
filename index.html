@@ -8,6 +8,8 @@
 <meta property="og:title" content="Software Engineer · Gothenburg">
 <meta property="og:description" content="Software engineer building robust systems across telecom, aerospace, and industrial automation.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0e12'/%3E%3Cpath d='M30 32 L51 50 L30 68' fill='none' stroke='%23c4f24a' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='55' y='60' width='24' height='9' rx='3' fill='%23c4f24a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -219,7 +221,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         <div class="cta-row anim d4">
             <a href="#contact" class="btn btn-primary" data-en="Get in touch →" data-sv="Kontakta mig →">Get in touch →</a>
             <a href="#experience" class="btn btn-ghost" data-en="View experience" data-sv="Se erfarenhet">View experience</a>
-            <a href="joel_cv_eng.pdf" class="btn btn-ghost" data-en="Download CV" data-sv="Ladda ner CV">Download CV</a>
+            <a href="joel_cv_eng.pdf" class="btn btn-ghost" data-en="Download CV" data-sv="Ladda ner CV" data-href-en="joel_cv_eng.pdf" data-href-sv="joel_cv_sve.pdf">Download CV</a>
         </div>
     </div>
     <div class="marquee anim d5">
@@ -366,11 +368,11 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         </div>
         <p class="contact-big reveal" data-en="Got a hard systems problem? <span class='hl'>Let's talk.</span>" data-sv="Har du ett svårt systemproblem? <span class='hl'>Hör av dig.</span>">Got a hard systems problem? <span class="hl">Let's talk.</span></p>
         <div class="contact-grid reveal">
-            <a href="mailto:your.email@gmail.com" class="contact-link">
+            <a href="mailto:joel.postonen@gmail.com" class="contact-link">
                 <span class="k" data-en="Email" data-sv="E-post">Email</span>
-                <span class="v">your.email@gmail.com →</span>
+                <span class="v">joel.postonen@gmail.com →</span>
             </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="contact-link">
+            <a href="https://linkedin.com/in/joel-postonen-195595113/" target="_blank" rel="noopener" class="contact-link">
                 <span class="k">LinkedIn</span>
                 <span class="v" data-en="Connect →" data-sv="Anslut →">Connect →</span>
             </a>
@@ -409,6 +411,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         document.documentElement.lang=lang;
         document.querySelectorAll('[data-'+lang+']').forEach(function(el){
             el.innerHTML=el.getAttribute('data-'+lang);
+        });
+        document.querySelectorAll('[data-href-'+lang+']').forEach(function(el){
+            el.setAttribute('href',el.getAttribute('data-href-'+lang));
         });
         document.querySelectorAll('.lang-btn').forEach(function(b){
             b.classList.toggle('active',b.getAttribute('data-lang')===lang);
