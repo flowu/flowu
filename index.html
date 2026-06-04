@@ -38,92 +38,59 @@ body{
     overflow-x:hidden;
     position:relative;
 }
-/* Atmosphere: faint grid + radial glow */
 body::before{
     content:"";
-    position:fixed;
-    inset:0;
+    position:fixed;inset:0;
     background-image:
         linear-gradient(var(--border) 1px,transparent 1px),
         linear-gradient(90deg,var(--border) 1px,transparent 1px);
     background-size:64px 64px;
     -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 70%);
     mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 70%);
-    opacity:.4;
-    pointer-events:none;
-    z-index:0;
+    opacity:.4;pointer-events:none;z-index:0;
 }
 body::after{
     content:"";
-    position:fixed;
-    top:-20%;left:50%;
-    width:900px;height:600px;
-    transform:translateX(-50%);
+    position:fixed;top:-20%;left:50%;
+    width:900px;height:600px;transform:translateX(-50%);
     background:radial-gradient(circle,rgba(196,242,74,.07) 0%,transparent 60%);
-    pointer-events:none;
-    z-index:0;
+    pointer-events:none;z-index:0;
 }
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
-
-/* Mono label helper */
-.label{
-    font-family:var(--mono);
-    font-size:.72rem;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--muted);
-}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
 /* Nav */
-nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(11,12,14,.72);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border);
-}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px}
-.brand{font-family:var(--mono);font-size:.85rem;font-weight:500;letter-spacing:.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(11,12,14,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;gap:16px}
+.brand{font-family:var(--mono);font-size:.85rem;font-weight:500;letter-spacing:.02em;white-space:nowrap}
 .brand .dot{color:var(--accent)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.78rem;color:var(--muted);transition:color .2s;letter-spacing:.04em}
+.nav-right{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.78rem;color:var(--muted);transition:color .2s;letter-spacing:.04em;white-space:nowrap}
 .nav-links a:hover{color:var(--fg)}
+.lang-toggle{display:flex;border:1px solid var(--border-2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-btn{font-family:var(--mono);font-size:.72rem;padding:7px 11px;background:transparent;color:var(--muted);border:none;cursor:pointer;letter-spacing:.05em;transition:background .2s,color .2s;line-height:1}
+.lang-btn.active{background:var(--accent);color:#0b0c0e}
+.lang-btn:not(.active):hover{color:var(--fg)}
 
 /* Hero */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;padding-bottom:60px}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;padding-bottom:56px}
 .status{display:inline-flex;align-items:center;gap:9px;margin-bottom:30px}
-.status .pulse{
-    width:7px;height:7px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 0 rgba(196,242,74,.5);
-    animation:pulse 2.4s infinite;
-}
-@keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(196,242,74,.45)}
-    70%{box-shadow:0 0 0 8px rgba(196,242,74,0)}
-    100%{box-shadow:0 0 0 0 rgba(196,242,74,0)}
-}
-.hero h1{
-    font-size:clamp(2.6rem,7.5vw,5.2rem);
-    font-weight:800;
-    line-height:1.02;
-    letter-spacing:-.035em;
-    margin-bottom:34px;
-    max-width:14ch;
-}
+.status .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(196,242,74,.5);animation:pulse 2.4s infinite;flex-shrink:0}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(196,242,74,.45)}70%{box-shadow:0 0 0 8px rgba(196,242,74,0)}100%{box-shadow:0 0 0 0 rgba(196,242,74,0)}}
+.hero h1{font-size:clamp(2.3rem,7.5vw,5.2rem);font-weight:800;line-height:1.02;letter-spacing:-.035em;margin-bottom:32px;max-width:15ch}
 .hero h1 .hl{color:var(--accent)}
-.hero-sub{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:60ch;line-height:1.65;margin-bottom:42px;font-weight:400}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.btn{
-    font-family:var(--mono);font-size:.82rem;letter-spacing:.03em;
-    padding:13px 22px;border-radius:7px;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
-}
+.hero-sub{font-size:clamp(1.02rem,2vw,1.3rem);color:var(--muted);max-width:60ch;line-height:1.65;margin-bottom:40px;font-weight:400}
+.cta-row{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--mono);font-size:.82rem;letter-spacing:.03em;padding:13px 22px;border-radius:7px;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .btn-primary{background:var(--accent);color:#0b0c0e;font-weight:500}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,242,74,.2)}
 .btn-ghost{border:1px solid var(--border-2);color:var(--fg)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
 /* Marquee */
-.marquee{margin-top:72px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;overflow:hidden;position:relative;z-index:1}
+.marquee{margin-top:64px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;overflow:hidden;position:relative;z-index:1}
 .marquee-track{display:flex;gap:44px;white-space:nowrap;width:max-content;animation:scroll 32s linear infinite}
 .marquee-track span{font-family:var(--mono);font-size:.85rem;color:var(--faint);letter-spacing:.04em}
 .marquee-track span::before{content:"//";color:var(--accent);margin-right:44px;opacity:.6}
@@ -131,17 +98,13 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-
 
 /* Sections */
 section{padding:110px 0;border-top:1px solid var(--border);position:relative;z-index:1}
-.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:60px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:56px}
 .sec-num{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
 .sec-title{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-.02em}
-.sec-intro{color:var(--muted);max-width:56ch;margin:-36px 0 56px;font-size:1.05rem}
+.sec-intro{color:var(--muted);max-width:56ch;margin:-32px 0 52px;font-size:1.05rem}
 
 /* Capabilities */
-.cap{
-    display:grid;grid-template-columns:auto 1fr;gap:28px;
-    padding:34px 0;border-top:1px solid var(--border);
-    transition:background .3s;
-}
+.cap{display:grid;grid-template-columns:auto 1fr;gap:28px;padding:34px 0;border-top:1px solid var(--border);transition:background .3s}
 .cap:hover{background:linear-gradient(90deg,var(--accent-dim),transparent)}
 .cap:hover .cap-num{color:var(--accent)}
 .cap-num{font-family:var(--mono);font-size:.9rem;color:var(--faint);padding-top:6px;transition:color .3s;min-width:34px}
@@ -169,7 +132,7 @@ section{padding:110px 0;border-top:1px solid var(--border);position:relative;z-i
 .edu-extra a:hover{border-color:var(--accent)}
 
 /* Contact */
-#contact .contact-big{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;max-width:18ch;margin-bottom:44px}
+#contact .contact-big{font-size:clamp(1.9rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;max-width:18ch;margin-bottom:44px}
 #contact .contact-big .hl{color:var(--accent)}
 .contact-grid{display:flex;gap:48px;flex-wrap:wrap}
 .contact-link{display:flex;flex-direction:column;gap:4px}
@@ -182,11 +145,9 @@ footer{border-top:1px solid var(--border);padding:34px 0;position:relative;z-ind
 footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .foot-txt{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.03em}
 
-/* Reveal animation */
+/* Reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
 .reveal.in{opacity:1;transform:none}
-
-/* Hero load stagger */
 @media (prefers-reduced-motion:no-preference){
     .anim{opacity:0;animation:fadeUp .8s cubic-bezier(.2,.6,.2,1) forwards}
     .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}.d5{animation-delay:.6s}
@@ -194,15 +155,36 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 @keyframes fadeUp{to{opacity:1;transform:none}}
 .anim{transform:translateY(18px)}
 
+/* ---- Mobile ---- */
 @media(max-width:760px){
+    .wrap{padding:0 20px}
+    nav .wrap{padding-top:14px;padding-bottom:14px}
     .nav-links{display:none}
-    .hero{padding-top:110px}
-    .sec-head{flex-direction:row;margin-bottom:44px}
-    .cap{grid-template-columns:1fr;gap:10px}
-    .cap-num{padding-top:0}
-    .exp,.edu{grid-template-columns:1fr;gap:10px}
-    .sec-intro{margin:-28px 0 40px}
-    section{padding:80px 0}
+    .brand{font-size:.8rem}
+    .hero{padding-top:96px;padding-bottom:48px}
+    .hero h1{margin-bottom:26px}
+    .hero-sub{margin-bottom:32px}
+    .cta-row{flex-direction:column;align-items:stretch;gap:10px}
+    .cta-row .btn{width:100%;padding:15px 22px}
+    .marquee{margin-top:48px}
+    section{padding:78px 0}
+    .sec-head{margin-bottom:40px;gap:12px}
+    .sec-intro{margin:-24px 0 38px;font-size:1rem}
+    .cap{grid-template-columns:1fr;gap:6px;padding:28px 0}
+    .cap-num{padding-top:0;font-size:.8rem}
+    .exp,.edu{grid-template-columns:1fr;gap:10px;padding:28px 0}
+    .exp-meta{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+    .contact-grid{flex-direction:column;gap:24px}
+}
+@media(max-width:430px){
+    .hero h1{font-size:2.05rem;line-height:1.06}
+    .hero-sub{font-size:1rem}
+    #contact .contact-big{font-size:1.8rem}
+    .cap-title{font-size:1.22rem}
+    .exp-role{font-size:1.12rem}
+    .sec-title{font-size:1.55rem}
+    .marquee-track{gap:30px}
+    .marquee-track span::before{margin-right:30px}
 }
 </style>
 </head>
@@ -211,12 +193,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 <nav>
     <div class="wrap">
         <a href="#" class="brand">software_engineer<span class="dot">.</span></a>
-        <ul class="nav-links">
-            <li><a href="#capabilities">01 What I do</a></li>
-            <li><a href="#experience">02 Experience</a></li>
-            <li><a href="#education">03 Education</a></li>
-            <li><a href="#contact">04 Contact</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#capabilities" data-en="01 What I do" data-sv="01 Vad jag gör">01 What I do</a></li>
+                <li><a href="#experience" data-en="02 Experience" data-sv="02 Erfarenhet">02 Experience</a></li>
+                <li><a href="#education" data-en="03 Education" data-sv="03 Utbildning">03 Education</a></li>
+                <li><a href="#contact" data-en="04 Contact" data-sv="04 Kontakt">04 Contact</a></li>
+            </ul>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <button class="lang-btn active" data-lang="en" type="button">EN</button>
+                <button class="lang-btn" data-lang="sv" type="button">SV</button>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -224,14 +212,14 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="wrap">
         <div class="status anim d1">
             <span class="pulse"></span>
-            <span class="label">Gothenburg, Sweden · Open to interesting problems</span>
+            <span class="label" data-en="Gothenburg, Sweden · Open to interesting problems" data-sv="Göteborg, Sverige · Öppen för intressanta problem">Gothenburg, Sweden · Open to interesting problems</span>
         </div>
-        <h1 class="anim d2">Robust software for systems that <span class="hl">can't afford to fail.</span></h1>
-        <p class="hero-sub anim d3">Software engineer with 5 years across telecommunications, aerospace, and industrial automation — from 5G core networks and drilling-rig firmware to air-gapped build pipelines. I work where reliability, performance, and getting the details right actually matter.</p>
+        <h1 class="anim d2" data-en="Robust software for systems that <span class='hl'>can't afford to fail.</span>" data-sv="Robust mjukvara för system som <span class='hl'>inte får fela.</span>">Robust software for systems that <span class="hl">can't afford to fail.</span></h1>
+        <p class="hero-sub anim d3" data-en="Software engineer with 5 years across telecommunications, aerospace, and industrial automation — from 5G core networks and drilling-rig firmware to air-gapped build pipelines. I work where reliability, performance, and getting the details right actually matter." data-sv="Mjukvaruingenjör med 5 års erfarenhet inom telekommunikation, flygbranschen och industriell automation — från 5G-kärnnät och mjukvara för borriggar till air-gapped byggpipelines. Jag arbetar där tillförlitlighet, prestanda och precision verkligen betyder något.">Software engineer with 5 years across telecommunications, aerospace, and industrial automation — from 5G core networks and drilling-rig firmware to air-gapped build pipelines. I work where reliability, performance, and getting the details right actually matter.</p>
         <div class="cta-row anim d4">
-            <a href="#contact" class="btn btn-primary">Get in touch →</a>
-            <a href="#experience" class="btn btn-ghost">View experience</a>
-            <a href="cv.pdf" class="btn btn-ghost">Download CV</a>
+            <a href="#contact" class="btn btn-primary" data-en="Get in touch →" data-sv="Kontakta mig →">Get in touch →</a>
+            <a href="#experience" class="btn btn-ghost" data-en="View experience" data-sv="Se erfarenhet">View experience</a>
+            <a href="joel_cv_eng.pdf" class="btn btn-ghost" data-en="Download CV" data-sv="Ladda ner CV">Download CV</a>
         </div>
     </div>
     <div class="marquee anim d5">
@@ -246,39 +234,39 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="wrap">
         <div class="sec-head reveal">
             <span class="sec-num">01</span>
-            <h2 class="sec-title">What I do</h2>
+            <h2 class="sec-title" data-en="What I do" data-sv="Vad jag gör">What I do</h2>
         </div>
-        <p class="sec-intro reveal">Five years of consultancy work has taken me across very different domains. The thread running through all of it: building software for systems that have to be dependable.</p>
+        <p class="sec-intro reveal" data-en="Five years of consultancy work has taken me across very different domains. The thread running through all of it: building software for systems that have to be dependable." data-sv="Fem års konsultarbete har tagit mig genom väldigt olika domäner. Den gemensamma tråden: att bygga mjukvara för system som måste vara tillförlitliga.">Five years of consultancy work has taken me across very different domains. The thread running through all of it: building software for systems that have to be dependable.</p>
 
         <div class="cap reveal">
             <span class="cap-num">01</span>
             <div>
-                <h3 class="cap-title">Build &amp; Runtime Infrastructure</h3>
-                <p class="cap-desc">Maintaining and extending build infrastructure and runtime systems in secure, air-gapped environments — automated provisioning, reproducible packaging, and reliable deployment pipelines.</p>
+                <h3 class="cap-title" data-en="Build &amp; Runtime Infrastructure" data-sv="Build- och runtime-infrastruktur">Build &amp; Runtime Infrastructure</h3>
+                <p class="cap-desc" data-en="Maintaining and extending build infrastructure and runtime systems in secure, air-gapped environments — automated provisioning, reproducible packaging, and reliable deployment pipelines." data-sv="Underhåller och vidareutvecklar build-infrastruktur och runtime-system i säkra, air-gapped miljöer — automatiserad provisionering, repeterbar paketering och tillförlitliga deploypipelines.">Maintaining and extending build infrastructure and runtime systems in secure, air-gapped environments — automated provisioning, reproducible packaging, and reliable deployment pipelines.</p>
                 <div class="tags"><span class="tag">RHEL / Linux</span><span class="tag">Kickstart</span><span class="tag">RPM</span><span class="tag">Makefiles</span><span class="tag">Jenkins</span><span class="tag">Podman</span></div>
             </div>
         </div>
         <div class="cap reveal">
             <span class="cap-num">02</span>
             <div>
-                <h3 class="cap-title">Embedded &amp; High-Performance Systems</h3>
-                <p class="cap-desc">Designing embedded C++ for real-time, performance-critical operations — from high-speed calculations on industrial machinery to validation on physical hardware.</p>
+                <h3 class="cap-title" data-en="Embedded &amp; High-Performance Systems" data-sv="Inbyggda system och högprestanda">Embedded &amp; High-Performance Systems</h3>
+                <p class="cap-desc" data-en="Designing embedded C++ for real-time, performance-critical operations — from high-speed calculations on industrial machinery to validation on physical hardware." data-sv="Utvecklar inbyggd C++ för realtidskritiska, prestandakrävande operationer — från höghastighetsberäkningar på industrimaskiner till validering på fysisk hårdvara.">Designing embedded C++ for real-time, performance-critical operations — from high-speed calculations on industrial machinery to validation on physical hardware.</p>
                 <div class="tags"><span class="tag">C++</span><span class="tag">Real-time</span><span class="tag">Embedded</span><span class="tag">Azure DevOps</span></div>
             </div>
         </div>
         <div class="cap reveal">
             <span class="cap-num">03</span>
             <div>
-                <h3 class="cap-title">Backend &amp; Distributed Systems</h3>
-                <p class="cap-desc">Building and testing features in large-scale distributed systems — including control-plane services in a 5G core network serving hundreds of millions of users.</p>
+                <h3 class="cap-title" data-en="Backend &amp; Distributed Systems" data-sv="Backend och distribuerade system">Backend &amp; Distributed Systems</h3>
+                <p class="cap-desc" data-en="Building and testing features in large-scale distributed systems — including control-plane services in a 5G core network serving hundreds of millions of users." data-sv="Bygger och testar funktioner i storskaliga distribuerade system — bland annat control-plane-tjänster i ett 5G-kärnnät som betjänar hundratals miljoner användare.">Building and testing features in large-scale distributed systems — including control-plane services in a 5G core network serving hundreds of millions of users.</p>
                 <div class="tags"><span class="tag">Erlang</span><span class="tag">Kubernetes</span><span class="tag">TTCN-3</span><span class="tag">Functional</span></div>
             </div>
         </div>
         <div class="cap reveal">
             <span class="cap-num">04</span>
             <div>
-                <h3 class="cap-title">Test Automation &amp; Tooling</h3>
-                <p class="cap-desc">Writing the Python tooling and automated test frameworks that keep delivery reliable — from log analysis and verification scripts to end-to-end test suites.</p>
+                <h3 class="cap-title" data-en="Test Automation &amp; Tooling" data-sv="Testautomation och verktyg">Test Automation &amp; Tooling</h3>
+                <p class="cap-desc" data-en="Writing the Python tooling and automated test frameworks that keep delivery reliable — from log analysis and verification scripts to end-to-end test suites." data-sv="Skriver Python-verktyg och automatiserade testramverk som håller leveransen tillförlitlig — från logganalys och verifieringsskript till end-to-end-testsviter.">Writing the Python tooling and automated test frameworks that keep delivery reliable — from log analysis and verification scripts to end-to-end test suites.</p>
                 <div class="tags"><span class="tag">Python</span><span class="tag">Pytest</span><span class="tag">Behave</span><span class="tag">CI/CD</span></div>
             </div>
         </div>
@@ -289,18 +277,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="wrap">
         <div class="sec-head reveal">
             <span class="sec-num">02</span>
-            <h2 class="sec-title">Experience</h2>
+            <h2 class="sec-title" data-en="Experience" data-sv="Erfarenhet">Experience</h2>
         </div>
 
         <div class="exp reveal">
             <div class="exp-meta">
                 <span class="exp-co">Saab</span>
-                <span class="exp-date">Oct 2025 — Present</span>
+                <span class="exp-date" data-en="Oct 2025 — Present" data-sv="okt 2025 — nu">Oct 2025 — Present</span>
                 <span class="exp-via">via Combitech</span>
             </div>
             <div>
-                <h3 class="exp-role">Runtime Systems &amp; Build Infrastructure</h3>
-                <p class="exp-desc">Maintain and extend build infrastructure and runtime systems in air-gapped RHEL environments. Automate OS installation and configuration with Kickstart, package software with RPM and Makefiles, automate builds in Jenkins, and diagnose runtime and build failures through systematic log analysis.</p>
+                <h3 class="exp-role" data-en="Runtime Systems &amp; Build Infrastructure" data-sv="Runtime-system och build-infrastruktur">Runtime Systems &amp; Build Infrastructure</h3>
+                <p class="exp-desc" data-en="Maintain and extend build infrastructure and runtime systems in air-gapped RHEL environments. Automate OS installation and configuration with Kickstart, package software with RPM and Makefiles, automate builds in Jenkins, and diagnose runtime and build failures through systematic log analysis." data-sv="Underhåller och vidareutvecklar build-infrastruktur och runtime-system i air-gapped RHEL-miljöer. Automatiserar OS-installation och konfiguration med Kickstart, paketerar mjukvara med RPM och Makefiles, automatiserar byggen i Jenkins och felsöker runtime- och byggfel genom systematisk logganalys.">Maintain and extend build infrastructure and runtime systems in air-gapped RHEL environments. Automate OS installation and configuration with Kickstart, package software with RPM and Makefiles, automate builds in Jenkins, and diagnose runtime and build failures through systematic log analysis.</p>
                 <div class="tags"><span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Linux / RHEL</span><span class="tag">Kickstart</span><span class="tag">RPM</span><span class="tag">Jenkins</span><span class="tag">Podman</span></div>
             </div>
         </div>
@@ -308,12 +296,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         <div class="exp reveal">
             <div class="exp-meta">
                 <span class="exp-co">Boeing</span>
-                <span class="exp-date">Jun 2024 — Sep 2025</span>
+                <span class="exp-date" data-en="Jun 2024 — Sep 2025" data-sv="jun 2024 — sep 2025">Jun 2024 — Sep 2025</span>
                 <span class="exp-via">via HiQ</span>
             </div>
             <div>
-                <h3 class="exp-role">Crew Operations Systems</h3>
-                <p class="exp-desc">Configured and delivered crew and operations management products for global airline clients. Implemented FAR/CBA regulatory rules in a real-time roster system with third-party dependencies, and worked directly with clients to tailor crew-planning workflows.</p>
+                <h3 class="exp-role" data-en="Crew Operations Systems" data-sv="System för besättningshantering">Crew Operations Systems</h3>
+                <p class="exp-desc" data-en="Configured and delivered crew and operations management products for global airline clients. Implemented FAR/CBA regulatory rules in a real-time roster system with third-party dependencies, and worked directly with clients to tailor crew-planning workflows." data-sv="Konfigurerade och levererade produkter för besättnings- och driftshantering åt globala flygbolagskunder. Implementerade FAR/CBA-regler i ett realtidssystem för besättningsscheman med tredjepartsberoenden, och arbetade nära kunder för att anpassa arbetsflöden för besättningsplanering.">Configured and delivered crew and operations management products for global airline clients. Implemented FAR/CBA regulatory rules in a real-time roster system with third-party dependencies, and worked directly with clients to tailor crew-planning workflows.</p>
                 <div class="tags"><span class="tag">Python</span><span class="tag">Rave</span><span class="tag">Gherkin</span><span class="tag">Data Integration</span></div>
             </div>
         </div>
@@ -321,12 +309,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         <div class="exp reveal">
             <div class="exp-meta">
                 <span class="exp-co">Epiroc</span>
-                <span class="exp-date">Jan 2023 — Apr 2024</span>
+                <span class="exp-date" data-en="Jan 2023 — Apr 2024" data-sv="jan 2023 — apr 2024">Jan 2023 — Apr 2024</span>
                 <span class="exp-via">via HiQ</span>
             </div>
             <div>
-                <h3 class="exp-role">Embedded Systems</h3>
-                <p class="exp-desc">Designed and implemented embedded C++ for high-speed calculations during drilling operations. Built multi-packet engine-bus messaging, pytest-based test suites, and Azure DevOps pipelines, validated on factory machines, plus Python log tooling and React/TypeScript frontend work.</p>
+                <h3 class="exp-role" data-en="Embedded Systems" data-sv="Inbyggda system">Embedded Systems</h3>
+                <p class="exp-desc" data-en="Designed and implemented embedded C++ for high-speed calculations during drilling operations. Built multi-packet engine-bus messaging, pytest-based test suites, and Azure DevOps pipelines, validated on factory machines, plus Python log tooling and React/TypeScript frontend work." data-sv="Designade och implementerade inbyggd C++ för höghastighetsberäkningar under borrning. Byggde stöd för engine-bus-meddelanden över flera paket, pytest-baserade testsviter och Azure DevOps-pipelines, validerat på fabriksmaskiner, samt Python-loggverktyg och frontend i React/TypeScript.">Designed and implemented embedded C++ for high-speed calculations during drilling operations. Built multi-packet engine-bus messaging, pytest-based test suites, and Azure DevOps pipelines, validated on factory machines, plus Python log tooling and React/TypeScript frontend work.</p>
                 <div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Azure DevOps</span></div>
             </div>
         </div>
@@ -334,12 +322,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
         <div class="exp reveal">
             <div class="exp-meta">
                 <span class="exp-co">Ericsson</span>
-                <span class="exp-date">Mar 2021 — Dec 2022</span>
+                <span class="exp-date" data-en="Mar 2021 — Dec 2022" data-sv="mar 2021 — dec 2022">Mar 2021 — Dec 2022</span>
                 <span class="exp-via">via HiQ</span>
             </div>
             <div>
-                <h3 class="exp-role">5G Core Network</h3>
-                <p class="exp-desc">Designed and implemented features for the AMF control-plane microservice in Ericsson's 5G core — infrastructure serving hundreds of millions of users. Ran system testing in Kubernetes, resolved defects through root-cause analysis, and triaged CI failures to keep releases stable.</p>
+                <h3 class="exp-role" data-en="5G Core Network" data-sv="5G-kärnnät">5G Core Network</h3>
+                <p class="exp-desc" data-en="Designed and implemented features for the AMF control-plane microservice in Ericsson's 5G core — infrastructure serving hundreds of millions of users. Ran system testing in Kubernetes, resolved defects through root-cause analysis, and triaged CI failures to keep releases stable." data-sv="Designade och implementerade funktioner för AMF-control-plane-mikrotjänsten i Ericssons 5G-kärna — infrastruktur som betjänar hundratals miljoner användare. Körde systemtester i Kubernetes, åtgärdade defekter genom rotorsaksanalys och triagerade CI-fel för att hålla releaser stabila.">Designed and implemented features for the AMF control-plane microservice in Ericsson's 5G core — infrastructure serving hundreds of millions of users. Ran system testing in Kubernetes, resolved defects through root-cause analysis, and triaged CI failures to keep releases stable.</p>
                 <div class="tags"><span class="tag">Erlang</span><span class="tag">Kubernetes</span><span class="tag">TTCN-3</span><span class="tag">Functional Programming</span></div>
             </div>
         </div>
@@ -350,21 +338,21 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="wrap">
         <div class="sec-head reveal">
             <span class="sec-num">03</span>
-            <h2 class="sec-title">Education</h2>
+            <h2 class="sec-title" data-en="Education" data-sv="Utbildning">Education</h2>
         </div>
         <div class="edu reveal">
             <span class="edu-date">2016 — 2020</span>
             <div>
-                <h3 class="edu-deg">BSc Computer Science</h3>
-                <p class="edu-school">University of Gothenburg</p>
-                <p class="edu-extra">Thesis: adaptive AI for autonomous StarCraft II gameplay with strategic decision-making. <a href="#">View thesis →</a></p>
+                <h3 class="edu-deg" data-en="BSc Computer Science" data-sv="Kandidatexamen i datavetenskap">BSc Computer Science</h3>
+                <p class="edu-school" data-en="University of Gothenburg" data-sv="Göteborgs universitet">University of Gothenburg</p>
+                <p class="edu-extra" data-en="Thesis: adaptive AI for autonomous StarCraft II gameplay with strategic decision-making. <a href='#'>View thesis →</a>" data-sv="Examensarbete: adaptiv AI för autonomt StarCraft II-spel med strategiskt beslutsfattande. <a href='#'>Se examensarbete →</a>">Thesis: adaptive AI for autonomous StarCraft II gameplay with strategic decision-making. <a href="#">View thesis →</a></p>
             </div>
         </div>
         <div class="edu reveal">
             <span class="edu-date">2014 — 2015</span>
             <div>
-                <h3 class="edu-deg">Engineering Mathematics</h3>
-                <p class="edu-school">Chalmers University of Technology</p>
+                <h3 class="edu-deg" data-en="Engineering Mathematics" data-sv="Teknisk matematik">Engineering Mathematics</h3>
+                <p class="edu-school" data-en="Chalmers University of Technology" data-sv="Chalmers tekniska högskola">Chalmers University of Technology</p>
             </div>
         </div>
     </div>
@@ -374,17 +362,17 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     <div class="wrap">
         <div class="sec-head reveal">
             <span class="sec-num">04</span>
-            <h2 class="sec-title">Contact</h2>
+            <h2 class="sec-title" data-en="Contact" data-sv="Kontakt">Contact</h2>
         </div>
-        <p class="contact-big reveal">Got a hard systems problem? <span class="hl">Let's talk.</span></p>
+        <p class="contact-big reveal" data-en="Got a hard systems problem? <span class='hl'>Let's talk.</span>" data-sv="Har du ett svårt systemproblem? <span class='hl'>Hör av dig.</span>">Got a hard systems problem? <span class="hl">Let's talk.</span></p>
         <div class="contact-grid reveal">
             <a href="mailto:your.email@gmail.com" class="contact-link">
-                <span class="k">Email</span>
+                <span class="k" data-en="Email" data-sv="E-post">Email</span>
                 <span class="v">your.email@gmail.com →</span>
             </a>
             <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="contact-link">
                 <span class="k">LinkedIn</span>
-                <span class="v">Connect →</span>
+                <span class="v" data-en="Connect →" data-sv="Anslut →">Connect →</span>
             </a>
             <a href="https://github.com/flowu" target="_blank" rel="noopener" class="contact-link">
                 <span class="k">GitHub</span>
@@ -396,21 +384,39 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 
 <footer>
     <div class="wrap">
-        <span class="foot-txt">© 2026 · Built from scratch</span>
-        <span class="foot-txt">Gothenburg / Remote</span>
+        <span class="foot-txt" data-en="© 2026 · Built from scratch" data-sv="© 2026 · Byggd från grunden">© 2026 · Built from scratch</span>
+        <span class="foot-txt" data-en="Gothenburg / Remote" data-sv="Göteborg / Distans">Gothenburg / Remote</span>
     </div>
 </footer>
 
 <script>
 (function(){
+    /* Scroll reveal */
     var els=document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-    var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-            if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(entries){
+            entries.forEach(function(en){
+                if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+            });
+        },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+        els.forEach(function(e){io.observe(e)});
+    }else{
+        els.forEach(function(e){e.classList.add('in')});
+    }
+
+    /* Language toggle */
+    function setLang(lang){
+        document.documentElement.lang=lang;
+        document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+            el.innerHTML=el.getAttribute('data-'+lang);
         });
-    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-    els.forEach(function(e){io.observe(e)});
+        document.querySelectorAll('.lang-btn').forEach(function(b){
+            b.classList.toggle('active',b.getAttribute('data-lang')===lang);
+        });
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});
+    });
 })();
 </script>
 
